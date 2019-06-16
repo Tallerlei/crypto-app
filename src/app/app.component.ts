@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import Binance from 'binance-api-node';
 import { DataService } from './services/data.service';
+import { CryptoListService } from './services/crypto-list.service';
+import { CoinFundInfo } from './models/Coin-Fund-Info';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +10,21 @@ import { DataService } from './services/data.service';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  binance = Binance();
   title = 'crypto-app';
   constructor(
     private router: Router,
-    public dataService: DataService
+    public dataService: DataService,
+    public cryptoListService: CryptoListService
   ) { }
 
+  ngOnInit(): void {
+    this.dataService.getCoinFundData().subscribe((res) => {
+      const infos: CoinFundInfo[] = (res as any).coinFundInfos;
+      console.log(infos);
+      infos.forEach(info => this.cryptoListService.coinFundInfos.push(new CoinFundInfo(info)));
+    });
+
+  }
   homeClicked(event) {
     this.router.navigate(['']);
   }
@@ -25,8 +34,5 @@ export class AppComponent {
   }
 
   buttonClicked(event) {
-    // this.binance.time().then(res => console.log(res));
-    // this.binance.accountInfo().then(res => console.log(res));
-    this.dataService.pingBinance().subscribe(res => console.log(res));
   }
 }

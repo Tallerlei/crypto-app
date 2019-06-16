@@ -29,6 +29,11 @@ export class DataService {
     }
 
   }
+
+  getCoinFundData() {
+    return this.http.get("./assets/trades.json")
+  }
+
   getCoin(coinId: string): Coin {
     return this.coinData.find(coin => coin.id === coinId);
   }

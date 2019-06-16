@@ -1,4 +1,8 @@
+import { CryptoListService } from '../services/crypto-list.service';
+import { CoinFundInfo } from './Coin-Fund-Info';
+
 export class Coin {
+  description: string;
   id: string;
   symbol: string;
   btcValue: number;
@@ -12,7 +16,9 @@ export class Coin {
     small: string;
     large: string;
   };
-  constructor(data) {
+  gainInPercent: number;
+  constructor(data, coinFundInfo: CoinFundInfo) {
+    this.description = data.description.en;
     this.symbol = data.symbol;
     this.btcValue = data.market_data.current_price.btc.toFixed(10);
     this.usdValue = data.market_data.current_price.usd;
@@ -22,5 +28,8 @@ export class Coin {
     this.marketRang = data.market_cap_rank;
     this.image = data.image;
     this.id = data.id;
+    this.gainInPercent = Math.round((((coinFundInfo.amount * this.usdValue) / coinFundInfo.usdPaid) * 100) - 100);
   }
+
+
 }

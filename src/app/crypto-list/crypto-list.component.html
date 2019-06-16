@@ -41,11 +41,23 @@
         </td>
       </ng-container>
 
+      <!-- Gain % -->
+      <ng-container matColumnDef="gainInPercent">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Gain % </th>
+        <td mat-cell *matCellDef="let coin">
+          <div class="flex-row-no-wrap"
+            [ngClass]="(coin.gainInPercent < 0) ? 'text-negative-value' : 'text-positive-value'">
+            {{ coin.gainInPercent }} %</div>
+        </td>
+      </ng-container>
+
       <!-- 24h Change in Percent Column -->
       <ng-container matColumnDef="oneDayChange">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> 24h % </th>
         <td mat-cell *matCellDef="let coin">
-          <div class="flex-row-no-wrap" [ngClass]="(coin.oneDayChange < 0) ? 'text-negative-value' : 'text-positive-value'">{{ coin.oneDayChange }} %
+          <div class="flex-row-no-wrap"
+            [ngClass]="(coin.oneDayChange < 0) ? 'text-negative-value' : 'text-positive-value'">{{ coin.oneDayChange }}
+            %
           </div>
         </td>
       </ng-container>
@@ -54,7 +66,9 @@
       <ng-container matColumnDef="sevenDayChange">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> 7d % </th>
         <td mat-cell *matCellDef="let coin">
-          <div class="flex-row-no-wrap" [ngClass]="(coin.sevenDayChange < 0) ? 'text-negative-value' : 'text-positive-value'">{{ coin.sevenDayChange }}
+          <div class="flex-row-no-wrap"
+            [ngClass]="(coin.sevenDayChange < 0) ? 'text-negative-value' : 'text-positive-value'">
+            {{ coin.sevenDayChange }}
             %</div>
         </td>
       </ng-container>

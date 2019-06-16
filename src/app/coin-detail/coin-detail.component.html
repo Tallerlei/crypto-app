@@ -8,8 +8,8 @@
     </mat-card-header>
     <mat-card-content>
       <div class="coin-detail-data-row">
-        <div>BTC</div>
-        <div> {{ coinData.btcValue }}</div>
+        <div>BTC (Satoshi)</div>
+        <div> {{ valueInSatoshi(coinData.btcValue) }}</div>
       </div>
       <div class="coin-detail-data-row">
         <div>EUR</div>
@@ -35,30 +35,47 @@
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-card class="example-card">
+  <mat-card *ngIf="coinFundInfo" class="example-card">
     <mat-card-header>
       <mat-card-title class="text-headline">Wallet Data</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="coin-detail-data-row">
-        <div>Purchase Price:</div>
+        <div>Purchase USD:</div>
         <div> {{ coinFundInfo.usdPaid }}</div>
+      </div>
+      <div class="coin-detail-data-row">
+        <div>Current USD:</div>
+        <div> {{ currentValue.toFixed(2) }}</div>
+      </div>
+      <div class="coin-detail-data-row">
+        <div>Gain in %:</div>
+        <div [ngClass]="(gainInPercent < 0) ? 'text-negative-value' : 'text-positive-value'"> {{ gainInPercent }}</div>
       </div>
       <div class="coin-detail-data-row">
         <div>Amount</div>
         <div> {{ coinFundInfo.amount }}</div>
       </div>
-      <ng-container *ngIf="coinFundInfo.targets">
+      <ng-container *ngIf="coinFundInfo?.targets">
         <br>
         <mat-divider [inset]="true"></mat-divider>
         <br>
         <div class="coin-detail-data-row ">
           <div>Targets</div>
           <div>
-            <div *ngFor="let target of coinFundInfo.targets" class="text-bold" [class.text-positive-value]="targetReached(target)">{{ valueInSatoshi(target) }}</div>
+            <div *ngFor="let target of coinFundInfo?.targets" class="text-bold"
+              [class.text-positive-value]="targetReached(target)">{{ valueInSatoshi(target) }}</div>
           </div>
         </div>
       </ng-container>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title class="text-headline">Coin Description</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div [innerHTML]="coinData.description"></div>
     </mat-card-content>
   </mat-card>
 </div>
