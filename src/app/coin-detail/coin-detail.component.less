@@ -1,0 +1,18 @@
+@import '../styles/styles.less';
+
+.example-card {
+    max-width: 600px;
+}
+
+.coin-detail-data-row {
+    .flex-row-aligned;
+    .container-items-extra-padding-right;
+
+    &>*:first-child {
+        .text-bold;
+    }
+
+    &>*:last-child {
+        margin-left: auto;
+    }
+}

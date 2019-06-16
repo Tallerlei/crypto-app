@@ -1,0 +1,64 @@
+<div class="page-header"><img [src]="coinData.image.small" />
+  <div class="text-headline text-uppercase">Coin Detail View for {{ coinData.symbol }}</div>
+</div>
+<div class="component-main-container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title class="text-headline">Basic Data</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="coin-detail-data-row">
+        <div>BTC</div>
+        <div> {{ coinData.btcValue }}</div>
+      </div>
+      <div class="coin-detail-data-row">
+        <div>EUR</div>
+        <div> {{ coinData.eurValue }}</div>
+      </div>
+      <div class="coin-detail-data-row">
+        <div>USD</div>
+        <div> {{ coinData.usdValue }}</div>
+      </div>
+      <div class="coin-detail-data-row">
+        <div>Rang</div>
+        <div> {{ coinData.marketRang }}</div>
+      </div>
+      <div class="coin-detail-data-row">
+        <div>24h Change</div>
+        <div [ngClass]="(coinData.oneDayChange < 0) ? 'text-negative-value' : 'text-positive-value'">
+          {{ coinData.oneDayChange }}</div>
+      </div>
+      <div class="coin-detail-data-row">
+        <div>7d Change</div>
+        <div [ngClass]="(coinData.sevenDayChange < 0) ? 'text-negative-value' : 'text-positive-value'">
+          {{ coinData.sevenDayChange }}</div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title class="text-headline">Wallet Data</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="coin-detail-data-row">
+        <div>Purchase Price:</div>
+        <div> {{ coinFundInfo.usdPaid }}</div>
+      </div>
+      <div class="coin-detail-data-row">
+        <div>Amount</div>
+        <div> {{ coinFundInfo.amount }}</div>
+      </div>
+      <ng-container *ngIf="coinFundInfo.targets">
+        <br>
+        <mat-divider [inset]="true"></mat-divider>
+        <br>
+        <div class="coin-detail-data-row ">
+          <div>Targets</div>
+          <div>
+            <div *ngFor="let target of coinFundInfo.targets" class="text-bold" [class.text-positive-value]="targetReached(target)">{{ valueInSatoshi(target) }}</div>
+          </div>
+        </div>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+</div>

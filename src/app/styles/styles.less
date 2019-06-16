@@ -1,0 +1,107 @@
+/* You can add global styles to this file, and also import other style files */
+@import './text.less';
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+
+}
+
+footer {
+    display: flex;
+    margin: 12px;
+    align-items: center;
+
+    &>*:not(:last-child) {
+        padding-right: 12px;
+
+    }
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.shade-at-bottom {
+    height: 12px;
+    position: absolute;
+    background-color: black;
+}
+
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.flex-row-aligned {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex-row-no-wrap {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.container-items-extra-padding-right {
+    &>*:not(:last-child) {
+        padding-right: 12px;
+    }
+}
+
+.bottom-right-fixed {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+
+}
+
+.main-content {
+    position: fixed;
+    width: 100%;
+    top: 64px;
+    height: calc(100% - 64px);
+    display: flex;
+}
+
+coin-detail,
+crypto-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-header {
+    .flex-row-aligned;
+    padding: 12px;
+    .container-items-extra-padding-right;
+}
+
+.component-main-container {
+    flex: 1;
+    display: flex;
+    overflow: auto;
+    position: relative;
+    margin-bottom: 12px;
+    padding: 12px;
+
+    mat-card:not(:last-of-type) {
+        margin-right: 12px;
+    }
+
+    table {
+        flex: 1;
+
+        tr:hover {
+            background-color: fade(grey, 20%);
+        }
+    }
+}

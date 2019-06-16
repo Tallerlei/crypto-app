@@ -1,0 +1,11 @@
+{
+    "/binance/api": {
+        "target": "https://api.binance.com/api",
+        "secure": false,
+        "pathRewrite": {
+            "^/api": ""
+        },
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

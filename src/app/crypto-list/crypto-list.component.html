@@ -1,0 +1,75 @@
+<div class="component-main-container mat-elevation-z8">
+  <div class="crypto-list-table-wrapper">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Icon Column -->
+      <ng-container matColumnDef="icon">
+        <th mat-header-cell *matHeaderCellDef> Icon </th>
+        <td mat-cell *matCellDef="let coin">
+          <div class="flex-row-aligned container-items-extra-padding-right">
+            <img [src]="coin.image.thumb" />
+            <div class="coin-symbol">{{ coin.symbol }}</div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Market Rang Column -->
+      <ng-container matColumnDef="marketRang">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Market Rang </th>
+        <td mat-cell *matCellDef="let coin">#{{ coin.marketRang }}</td>
+      </ng-container>
+
+      <!-- BTC Column -->
+      <ng-container matColumnDef="btcValue">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> BTC </th>
+        <td mat-cell *matCellDef="let coin">{{ coin.btcValue }}</td>
+      </ng-container>
+
+      <!-- EUR Column -->
+      <ng-container matColumnDef="eurValue">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> EUR </th>
+        <td mat-cell *matCellDef="let coin">
+          <div class="flex-row-no-wrap">{{ coin.eurValue }} €</div>
+        </td>
+      </ng-container>
+
+      <!-- USD Column -->
+      <ng-container matColumnDef="usdValue">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> USD </th>
+        <td mat-cell *matCellDef="let coin">
+          <div class="flex-row-no-wrap">{{ coin.usdValue }} $</div>
+        </td>
+      </ng-container>
+
+      <!-- 24h Change in Percent Column -->
+      <ng-container matColumnDef="oneDayChange">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> 24h % </th>
+        <td mat-cell *matCellDef="let coin">
+          <div class="flex-row-no-wrap" [ngClass]="(coin.oneDayChange < 0) ? 'text-negative-value' : 'text-positive-value'">{{ coin.oneDayChange }} %
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- 7d Change Column -->
+      <ng-container matColumnDef="sevenDayChange">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> 7d % </th>
+        <td mat-cell *matCellDef="let coin">
+          <div class="flex-row-no-wrap" [ngClass]="(coin.sevenDayChange < 0) ? 'text-negative-value' : 'text-positive-value'">{{ coin.sevenDayChange }}
+            %</div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr (click)="rowClicked($event, row)" class="cursor-pointer" mat-row
+        *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
+
+<footer>
+  <div class="crypto-list-update-time" *ngIf="lastCoinUpdate" title="{{ lastCoinUpdate | date:'full'}}">
+    {{ lastCoinUpdate | date:'medium'}} </div>
+  <button (click)="refreshClicked($event)" class="crypto-list-refresh-button" mat-raised-button color="accent">
+    <mat-icon>autorenew</mat-icon>
+  </button>
+</footer>
