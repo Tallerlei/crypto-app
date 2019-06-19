@@ -11,6 +11,8 @@ export class Coin {
   oneDayChange: number;
   sevenDayChange: number;
   marketRang: number;
+  gainInUsd: number;
+  usdPaid: number;
   image: {
     thumb: string;
     small: string;
@@ -28,7 +30,11 @@ export class Coin {
     this.marketRang = data.market_cap_rank;
     this.image = data.image;
     this.id = data.id;
-    this.gainInPercent = Math.round((((coinFundInfo.amount * this.usdValue) / coinFundInfo.usdPaid) * 100) - 100);
+    if (coinFundInfo) {
+      this.gainInPercent = Math.round((((coinFundInfo.amount * this.usdValue) / coinFundInfo.usdPaid) * 100) - 100);
+      this.gainInUsd = (this.gainInPercent / 100) * coinFundInfo.usdPaid + coinFundInfo.usdPaid;
+      this.usdPaid = coinFundInfo.usdPaid;
+    }
   }
 
 
