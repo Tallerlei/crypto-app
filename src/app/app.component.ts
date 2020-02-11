@@ -22,7 +22,11 @@ export class AppComponent {
       const infos: CoinFundInfo[] = (res as any).coinFundInfos;
       console.log(infos);
       infos.forEach(info => this.cryptoListService.coinFundInfos.push(new CoinFundInfo(info)));
-    });
+    },
+
+      (error) => {
+        alert('no trades.json file present in assets folder.');
+      });
 
   }
   homeClicked(event) {

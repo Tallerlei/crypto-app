@@ -6,10 +6,6 @@ import { CoinFundInfo } from '../models/Coin-Fund-Info';
 })
 export class CryptoListService {
   coinFundInfos: CoinFundInfo[] = [];
-  coinList: string[] = ["litecoin", "dent", "bittorrent-2", "no-bs-crypto", "hshare", "power-ledger", "loopring", "polymath-network",
-    "republic-protocol", "poa-network", "zilliqa", "ethos", "medical-token-currency", "binancecoin", "bitcoin", "nano", "populous",
-    "ethereum", "verge", "bitcoin-cash", "cardano", "stellar", "tron", "wanchain"];
-
 
   constructor() {
   }
@@ -19,7 +15,7 @@ export class CryptoListService {
   }
 
   getCoinList(): string[] {
-    return this.coinList;
+    return this.coinFundInfos.map(fundInfo => fundInfo.id);
   }
 
 }

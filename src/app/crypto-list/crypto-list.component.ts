@@ -15,7 +15,8 @@ export class CryptoListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['icon', 'marketRang', 'btcValue', 'usdValue', 'eurValue', 'gainInPercent', 'oneDayChange', 'sevenDayChange'];
+  displayedColumns: string[] = ['icon', 'marketRang', 'gainInPercent', 'oneDayChange', 'sevenDayChange'];
+  // displayedColumns: string[] = ['icon', 'marketRang', 'btcValue', 'usdValue', 'eurValue', 'gainInPercent', 'oneDayChange', 'sevenDayChange'];
 
   constructor(
     public cryptoListService: CryptoListService,
@@ -66,7 +67,7 @@ export class CryptoListComponent implements OnInit {
   }
 
   get coinList(): string[] {
-    return this.cryptoListService.coinList;
+    return this.cryptoListService.getCoinList();
   }
 
   get coins(): Coin[] {
