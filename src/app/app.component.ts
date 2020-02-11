@@ -20,7 +20,6 @@ export class AppComponent {
   ngOnInit(): void {
     this.dataService.getCoinFundData().subscribe((res) => {
       const infos: CoinFundInfo[] = (res as any).coinFundInfos;
-      console.log(infos);
       infos.forEach(info => this.cryptoListService.coinFundInfos.push(new CoinFundInfo(info)));
     },
 
@@ -29,6 +28,7 @@ export class AppComponent {
       });
 
   }
+
   homeClicked(event) {
     this.router.navigate(['']);
   }

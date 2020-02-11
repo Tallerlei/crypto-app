@@ -7,7 +7,7 @@ export class CoinFundInfo {
     constructor(data) {
         this.id = data.id;
         this.amount = data.amount;
-        this.usdPaid = data.usdPaid.toFixed(2);
+        this.usdPaid = data.usdPaid;
         this.targets = data.targets;
     }
 }
