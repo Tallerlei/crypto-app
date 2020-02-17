@@ -39,7 +39,6 @@ export class CryptoListComponent implements OnInit {
         return coin.id === coinId
       });
       if (!some) {
-        console.log('Getting Coin Information for "' + coinId + '".')
         this.storeCoinData(coinId);
       }
     }

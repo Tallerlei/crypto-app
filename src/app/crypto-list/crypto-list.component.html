@@ -1,6 +1,6 @@
 <div class="component-main-container mat-elevation-z8">
   <div class="crypto-list-table-wrapper">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="dataSource" matSort  matSortActive="oneDayChange" matSortDirection="desc" >
 
       <!-- Icon Column -->
       <ng-container matColumnDef="icon">

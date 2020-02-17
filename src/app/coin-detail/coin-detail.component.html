@@ -29,6 +29,16 @@
           {{ coinData.oneDayChange }}</div>
       </div>
       <div class="coin-detail-data-row">
+        <div>High</div>
+        <div>
+          {{ valueInSatoshi(coinData.oneDayHigh) }}</div>
+      </div>
+      <div class="coin-detail-data-row">
+        <div>Low</div>
+        <div>
+          {{ valueInSatoshi(coinData.oneDayLow) }}</div>
+      </div>
+      <div class="coin-detail-data-row">
         <div>7d Change</div>
         <div [ngClass]="(coinData.sevenDayChange < 0) ? 'text-negative-value' : 'text-positive-value'">
           {{ coinData.sevenDayChange }}</div>

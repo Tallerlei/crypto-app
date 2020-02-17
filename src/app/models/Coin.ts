@@ -9,6 +9,8 @@ export class Coin {
   usdValue: number;
   eurValue: number;
   oneDayChange: number;
+  oneDayHigh: number;
+  oneDayLow: number;
   sevenDayChange: number;
   marketRang: number;
   gainInUsd: number;
@@ -26,6 +28,8 @@ export class Coin {
     this.usdValue = data.market_data.current_price.usd;
     this.eurValue = data.market_data.current_price.eur;
     this.oneDayChange = data.market_data.price_change_percentage_24h.toFixed(2);
+    this.oneDayHigh = data.market_data.high_24h.btc;
+    this.oneDayLow = data.market_data.low_24h.btc;
     this.sevenDayChange = data.market_data.price_change_percentage_7d.toFixed(2);
     this.marketRang = data.market_cap_rank;
     this.image = data.image;
