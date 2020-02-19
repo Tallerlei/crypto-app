@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./crypto-list.component.less']
 })
 export class CryptoListComponent implements OnInit {
-  @ViewChild(MatTable, null) table: MatTable<any>;
+  @ViewChild(MatTable, { static: false }) table: MatTable<any>;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   dataSource = new MatTableDataSource();
